@@ -1,0 +1,9 @@
+*{
+    box-sizing: border-box;
+    width: 100%;
+    /* font-family: Poppin; */
+}
+
+body{
+    background-color: white;
+}

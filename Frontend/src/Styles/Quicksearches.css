@@ -1,0 +1,39 @@
+.quick-searches{
+    text-align: left;
+    color: #192f60;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.quick-search-subtittle{
+    color: gray;
+}
+
+.card{
+    width: 360px;
+    height: 160px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+    background-color: white;
+    border: none;
+    border-radius: 3px;
+}
+
+.card-img{
+    height: 160px;
+    border: none;
+    border-radius: 0px;
+}
+.card-title{
+    text-align: left;
+    color: #192f60;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.card-description{
+    text-align: left;
+    color: gray;
+    font-size: 14px;
+    font-weight: normal;
+
+}
