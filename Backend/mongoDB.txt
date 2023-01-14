@@ -1,0 +1,54 @@
+
+
+1.
+//TO hide certain fields,you pass those values as 0 ,use $project as part of aggregate .
+  db.restaurantinfo.aggregate([{$project:{_id:0, location:0}}])
+
+2.
+// To find a particular match from a collection.
+  db.restaurantinfo.find({restaurant_name:'DEF restaurant',rating:'3.8'});
+
+//find and remove location and _id.....
+  db.restaurantinfo.aggregate([{$match:{restaurant_name:'DEF restaurant'}},{$project:{_id:0, location:0}}]);
+
+
+3.regular expresssion in find.
+
+  db.restaurantinfo.find({restaurant_name:/DEF/});
+a. if its start with DEF , add a"^" before the text;
+  db.restaurantinfo.find({restaurant_name:/^DEF});
+
+ c.if it ends with Resturant, add a"$"at the ends;
+  db.restaurantinfo.find({restaurant_name:/Resturant$/});
+
+ d. if you need it to be case insensitive
+  db.restaurantinfo.find({restaurant_name:{'$regex':'def','$options':'i'});
+ 
+4. Grouping, finding, total,And sorting....
+  db.restaurantinfo.aggregate([{$group:{_id:'$location',total_restuarants:{$sum:1}}},{$sort:{total_restuarants:1}}]);
+
+
+  if sort:1 ,,,then ascending order....
+  if sort:-1,   decsending order.....
+
+
+5. Add the results u got in s.no 4into another collection called "results"..
+  db.restaurantinfo.aggregate([{$group:{_id:'$location',total_restuarants:{$sum:1}}},{$sort:{total_restuarants:1}},{$out:'results}]);
+
+  after that we can see the output inside results,,
+  db.results.find()
+
+6.limit to n records..
+for ex...
+n=2 in our case 
+
+a.  db.results.find().limit(2)
+b.   db.results.aggregate({$limit:2})
+
+
+7. total records...
+  db.results.aggregate({$count:'total_records'})
+
+
+8. skip the data
+   db.restaurantinfo.find().skip(2)...
